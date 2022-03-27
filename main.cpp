@@ -99,7 +99,7 @@ int MoveBlock(int Direction);
 int CheckMove(int Direction);
 int MoveBlock(int Direction);
 void UpdateScreen();
-void DisplayBlock(int x, int y);
+void DisplayBlock(int Bx, int By);
 void GetNextBlock();
 void CheckLine();
 void RemoveLine(int LineNumber);
@@ -331,7 +331,7 @@ int CheckMove(int Direction) {
 	return 1;
 }
 
-void DisplayBlock(int x, int y) {
+void DisplayBlock(int Bx, int By) {
 	cout<<"\n  ScreenBG   \n";
 	for(int i=0; i<COL ; i++){
 		for(int j=0; j<ROW; j++){
@@ -347,6 +347,7 @@ void DisplayBlock(int x, int y) {
 		}
 		cout<<"\n";
 	}
+	
 	for(int i=0; i<COL ; i++){
 		for(int j=0; j<ROW; j++){
 			ScreenLayout[i][j] = ScreenBG[i][j];
@@ -354,17 +355,17 @@ void DisplayBlock(int x, int y) {
 	}
 
 	for(int i=0; i<4; i++) {
-		if((x+i)<0 || (x+i) > COL){
+		if((Bx+i)<0 || (Bx+i) > COL){
 			continue;
 		}
 		for(int j=0; j<4; j++) {
-			if((y+j)>ROW){
+			if((By+j)>ROW){
 				continue;
 			}
 			if(BlockMatrix[i][j] == 0){
 				continue;
 			}
-			ScreenLayout[x+i][y+j] = BlockMatrix[i][j];
+			ScreenLayout[Bx+i][By+j] = BlockMatrix[i][j];
 		}
 	}
 	UpdateScreen();
